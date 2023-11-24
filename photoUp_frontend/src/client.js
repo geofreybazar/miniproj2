@@ -17,18 +17,52 @@
 
 // export const urlFor=(source)=>builder.image(source)
 
-import { createClient } from "@sanity/client";
+
+
+
+
+// real code!
+
+// import { createClient } from "@sanity/client";
+// import imageUrlBuilder from '@sanity/image-url';
+
+// const a = createClient({
+//   projectId: import.meta.env.VITE_REACT_APP_SANITY_PROJECT_ID,
+//   dataset: 'production',
+//   apiVersion: '2023-05-03',
+//   useCdn: true,
+//   token: import.meta.env.VITE_REACT_APP_SANITY_TOKEN ,
+//   ignoreBrowserTokenWarning: true
+// });
+
+
+// export const client = createClient({
+//   projectId: import.meta.env.VITE_REACT_APP_SANITY_PROJECT_ID,
+//   dataset: 'production',
+//   apiVersion: '2023-05-03',
+//   useCdn: true,
+//   token: import.meta.env.VITE_REACT_APP_SANITY_TOKEN ,
+//   ignoreBrowserTokenWarning: true
+// });
+
+// const builder = imageUrlBuilder(createClient);
+
+// export const urlFor = (source) => builder.image(source); 
+
+
+import { createClient } from '@sanity/client'; 
 import imageUrlBuilder from '@sanity/image-url';
 
-export default createClient({
-  projectId: "2tj0xr54",
+const client = createClient({
+  projectId: import.meta.env.VITE_REACT_APP_SANITY_PROJECT_ID,
   dataset: 'production',
   apiVersion: '2023-05-03',
   useCdn: true,
-  token: "skcdpUCsW0YKBZqFnYl9lmb8s8mnp41vUhSdWQhr0aR5Dunl9FN33M9kLYc1Q0DoKh7NkV3p7c1VC6md43nbCS7V68rLLKqapSDoE7hCuhGqW6TL5pkuKpC6v4uvvL4XfgxJDMWwZ33dkkxOAPsn0xuSNxfewUQm6gjDxxTUC75noX9OTSgr" ,
+  token: import.meta.env.VITE_REACT_APP_SANITY_TOKEN ,
   ignoreBrowserTokenWarning: true
 });
 
-const builder = imageUrlBuilder(createClient);
+export default client;
+const builder = imageUrlBuilder(client);
 
 export const urlFor = (source) => builder.image(source);

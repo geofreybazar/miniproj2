@@ -6,7 +6,7 @@ import sharevideo from '../assets/share.mp4'
 import logo from '../assets/logowhite.png'
 // import { GoogleLogin } from '@react-oauth/google';
 import GoogleLogin from 'react-google-login';
-import createClient from '../client';
+import client from '../client';
 
 
 function login() {
@@ -14,6 +14,7 @@ function login() {
   const responseGoogle = (response) => {
     if(!response.profileObj) return;
     localStorage.setItem('user', JSON.stringify(response.profileObj));
+    console.log(response.profileObj)
     const { name, googleId, imageUrl } = response.profileObj;
     const doc = {
       _id: googleId,
@@ -21,7 +22,7 @@ function login() {
       userName: name,
       image: imageUrl,
     };
-    createClient.createIfNotExists(doc)
+    client.createIfNotExists(doc)
       .then(() => {
       navigate('/', { replace: true });
     });
@@ -47,8 +48,7 @@ function login() {
         </div>
         
         <div className={'shadow-2xl'}>
-      
-
+    
         <GoogleLogin
           clientId= {import.meta.env.VITE_REACT_APP_GOOGLE_API_TOKEN}
           buttonText="Login"
